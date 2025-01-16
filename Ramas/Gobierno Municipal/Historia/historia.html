@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gobierno Autónomo Municipal de Buena Vista</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Contenedor del menú que será reemplazado por el archivo menu.html -->
+  <div id="menu-container"></div>
+
+  <!-- Contenido principal de la página -->
+  <section class="about_section layout_padding">
+      <div class="container">
+
+        <section class="about_section layout_padding">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="detail-box">
+                <img src="Imagenes/Iglesia.jpg" alt="Misión y Visión" class="img-fluid">
+                <br><br>
+              </div>
+            </div>
+          </div>
+          <div class="about_section_content">
+            <div class="detail-box">
+              <h2 class="custom_heading">
+                <span>Misión</span>
+              </h2>
+              <p>
+                "Considerando las leyes vigentes y el mandato social para el mediano y largo
+                plazo, el Gobierno Autónomo Municipal Buena Vista, es la institución
+                pública más importantes con capacidad legislativa y ejecutiva con mandato
+                gubernativo para la gestión del desarrollo municipal, armónico, integrador,
+                sostenible y con identidad propia, mediante la planificación, la gestión
+                financiera, ambiental y territorial, que orientan la inversión pública para
+                garantizar la seguridad alimentaria y buscar la calidad de vida de los
+                habitantes y estantes del Municipio.
+                ".
+              </p>
+            </div>
+            <div class="detail-box">
+              <h2 class="custom_heading">
+                <span>Visión</span>
+              </h2>
+              <p>
+                "El Gobierno Autónomo Municipal de Buena Vista es una institución con
+                autonomía plena en su administración, busca el desarrollo agroindustrial
+                Municipal a través de sus recursos naturales la agricultura, frutícola y otros,
+                es defensora del vivir bien colectivo; realiza una gestión transparente,
+                eficiente y eficaz, goza de credibilidad social en el ámbito de sus
+                competencias y es capaz de lograr la conjunción de negociaciones
+                interinstitucionales, a nivel departamental, nacional e internacional.
+                Asimismo, practica los principios y valores del vivir bien para todo sus
+                habitantes y estantes del municipio para posesionarse como el Centro
+                Turístico.".
+              </p>
+            </div>
+          </div>
+        </div>
+    </section>  !-- Más contenido aquí -->
+      </div>
+  </section>
+  
+  <!-- Contenedor del pie de página que será reemplazado por el archivo footer.html -->
+  <div id="footer-container"></div>
+
+  <!-- Script para cargar el menú y el pie de página -->
+  <script>
+      // Función para cargar el menú
+      fetch('../../../menu.html')
+          .then(response => response.text())
+          .then(data => document.getElementById('menu-container').innerHTML = data);
+
+      // Función para cargar el pie de página
+      fetch('footer.html')
+          .then(response => response.text())
+          .then(data => document.getElementById('footer-container').innerHTML = data);
+  </script>
+    
+</body>
+</html>
