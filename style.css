@@ -1,1 +1,874 @@
+*{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
+}
+
+body{
+  background-image: url('Imagenes/Imagen-de-fondo.jpg'); /* Cambia esto por la ruta de tu imagen */
+    background-size: cover; /* Ajusta la imagen para que cubra toda la pantalla */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Fija la imagen de fondo para que no se mueva */
+    background-position: center; /* Centra la imagen */
+    margin: 0; /* Elimina márgenes para un mejor efecto */
+    padding: 0; /* Elimina padding */
+    font-size: 16px; /* Base size for rem units */
+}
+
+/* Header y menú */
+header{
+  position: fixed; /* Mantiene el header fijo en la parte superior */
+  top: 0; /* Alinea el header al borde superior */
+  left: 0; /* Extiende el header al borde izquierdo */
+  right: 0; /* Extiende el header al borde derecho */
+  max-height: 10%; /* Limita la altura máxima al 10% de la pantalla */
+  background-color: rgba(14, 76, 247, 0.9); /* Ajusta la opacidad para mayor legibilidad */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Incrementa la profundidad del sombreado */
+  padding: 0 2%; /* Agrega espacio interno horizontal */
+  display: flex; /* Activa el layout flex */
+  align-items: center; /* Centra los elementos verticalmente */
+  justify-content: space-between; /* Espacia los elementos al máximo horizontalmente */
+  z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
+  transition: all 0.3s ease-in-out; /* Añade una transición suave para interacciones */
+  text-transform: uppercase;
+}
+
+img{
+  width: 200px;
+  vertical-align: middle;
+}
+
+header .logo{
+  font-weight: bold;
+  font-size: 2rem; /* Usa rem para tamaño relativo */
+  color: aliceblue;
+}
+
+header .navbar ul{
+  list-style: none;
+}
+
+header .navbar ul li{
+  position: relative;
+  float: left;
+}
+
+header .navbar ul li a{
+  font-size: 1.125rem; /* Cambia px a rem para ser relativo */
+  padding: 20px;
+  color: aliceblue;
+  display: block;
+}
+
+header .navbar ul li a:hover{
+  background-color: #333;
+}
+
+header .navbar ul li ul{
+  position: absolute;
+  left: 0;
+  width: 200px;
+  background-color: #5c40fd;
+  display: none;
+}
+
+header .navbar ul li ul li{
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+header .navbar ul li ul li ul{
+  left: 200px;
+  top: 0;
+}
+
+header.navbar ul li:focus-within > ul, header .navbar ul li:hover > ul{
+  display: initial;
+}
+
+#menu{
+  display: none;
+}
+.menu-icono{
+  width: 25px;
+}
+
+header label{
+  cursor: pointer;
+  display: none;
+}
+
+@media(max-width:991px){
+  header{
+    padding: 30px;
+  }
+
+  header label{
+    display: initial;
+  }
+
+  header .navbar{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #5c40fd;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: none;
+  }
+
+  header .navbar ul li{
+    width: 100%;
+  }
+
+  header .navbar ul li ul{
+    position: relative;
+    width: 100%;
+  }
+
+  header .navbar ul li ul li{
+    background-color: #5c40fd;
+  }
+
+  header .navbar ul li ul li ul{
+    width: 100%;
+    left: 0;
+  }
+
+  #menu:checked ~ .navbar{
+    display: initial;
+  }
+}
+
+.container-slider{
+  width: 90%;
+  max-width: 90%;
+  margin: 5.5% auto;/* Centra el contenedor horizontalmente */
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.5),
+              0 15px 50px;
+  border-radius: 10px;
+  background: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container-slider:hover {
+  transform: scale(1.02); /* Pequeño efecto de zoom al pasar el mouse */
+  box-shadow: 
+    0 6px 12px rgba(0, 0, 0, 0.15), 
+    0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.slider{
+  display: inline-flex;
+  width: 400%;
+  height: 100%;
+  margin-left: -100%;
+}
+
+.slider__section{
+  width: 100%;
+}
+.slider__img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+}
+
+.slider__btn {
+  position: absolute;
+  width: 45px; /* Tamaño ajustado para mayor usabilidad */
+  height: 45px;
+  background: rgba(255, 255, 255, 0.8); /* Mayor opacidad para mejor visibilidad */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem; /* Uso de unidades relativas */
+  font-weight: bold;
+  font-family: monospace;
+  color: #333; /* Color del texto más contrastado */
+  text-align: center;
+  line-height: 45px; /* Centrado vertical del texto */
+  border: 2px solid rgba(255, 255, 255, 0.8); /* Borde sutil */
+  border-radius: 50%; /* Forma circular */
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para efecto flotante */
+  transition: all 0.3s ease; /* Suaviza los cambios de estilo */
+}
+
+.slider__btn:hover {
+  background: rgba(255, 255, 255, 1); /* Fondo completamente blanco */
+  color: #007BFF; /* Color de texto destacado */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  transform: scale(1.1); /* Efecto de zoom */
+}
+
+.slider__btn--left {
+  left: 15px; /* Ajuste de posición */
+}
+
+.slider__btn--right {
+  right: 15px; /* Ajuste de posición */
+}
+
+/* Estilos para los indicadores */
+.slider-indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: -15px; /* Espacio entre las imágenes y los indicadores */
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(243, 9, 9, 0.5); /* Color de los indicadores inactivos */
+  border-radius: 50%; /* Forma circular */
+  margin: 0 5px; /* Espacio entre los puntos */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.indicator.active {
+  background-color: #fff; /* Color del indicador activo */
+}
+
+.indicator:hover {
+  background-color: #fff; /* Color al pasar el ratón */
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .container-slider {
+    width: 95%; /* Mayor espacio para pantallas pequeñas */
+    margin: 5%;
+    box-shadow: 
+      0 2px 6px rgba(0, 0, 0, 0.1),
+      0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.slider__btn {
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  line-height: 40px;
+}
+
+
+@media (max-width: 480px) {
+  .container-slider {
+    margin: 4%;
+    border-radius: 8px; /* Menor radio para pantallas pequeñas */
+  }
+  .slider__btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+    line-height: 35px;
+  }
+}
+/* Sección general con fondo transparente */
+.mbr-section {
+  background-color: transparent; /* Fondo transparente */
+  padding-top: 5px;
+  padding-bottom: 5px;
+  position: relative; /* Para permitir la superposición de contenido */
+}
+
+/* Ajustes de título */
+.mbr-section-title {
+  font-weight: normal;
+  font-size: 2.5rem; /* Tamaño grande de texto */
+  color: #ffffff; /* Color blanco para mejor contraste sobre fondo transparente */
+  text-align: center; /* Asegura que el texto se mantenga centrado */
+  margin-bottom: 15px; /* Espacio debajo del título */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Sombra suave para mayor legibilidad sobre fondo variable */
+}
+
+/* Subtítulo o texto adicional */
+.mbr-section-title + p {
+  font-size: 1.125rem; /* Tamaño de texto adecuado */
+  color: #ffffff; /* Blanco para texto sobre fondo oscuro */
+  text-align: center; /* Centrado del texto */
+  margin-top: 10px; /* Espacio arriba */
+  line-height: 1.6; /* Mejor legibilidad */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Sombra para facilitar lectura */
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .mbr-section-title {
+      font-size: 2rem; /* Reducir el tamaño del título en pantallas pequeñas */
+  }
+  .mbr-section-title + p {
+      font-size: 1rem; /* Reducir tamaño del subtítulo en pantallas pequeñas */
+  }
+}
+
+/* Media Query para pantallas móviles */
+@media (max-width: 480px) {
+  .mbr-section-title {
+      font-size: 1.5rem; /* Reducir aún más el tamaño del título en móviles */
+  }
+  .mbr-section-title + p {
+      font-size: 0.9rem; /* Ajuste de tamaño de fuente */
+  }
+}
+
+
+/* Tarjetas */
+.card {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card-title {
+  font-size: 1.125rem; /* Usa rem para tamaño relativo */
+  color: #000500;
+}
+
+.card-title a {
+  color: #fafbfc; /* Cambiar color del enlace del título */
+}
+
+.card-img {
+  text-align: center;
+}
+
+.card-img a {
+  font-size: 3rem;
+}
+
+/* Flexbox para alineación horizontal de las tarjetas */
+.mbr-cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.mbr-cards-col {
+  flex: 0 0 23%;  /* Esto da un 23% de ancho para que haya espacio entre las tarjetas */
+  margin-bottom: 40px;
+}
+
+/* Estilos para hacer los iconos más grandes */
+.icono-grande {
+    width: 100px;  /* Cambia el tamaño según tu preferencia */
+    height: 100px; /* Cambia el tamaño según tu preferencia */
+    display: block; /* Asegura que la imagen esté en bloque y ocupe toda la línea */
+    margin: 0 auto 20px auto; /* Alinea al centro y da un margen inferior para separar del título */
+}
+
+/* Opcional: Ajusta la posición de los títulos si es necesario */
+.card-block h4 {
+    text-align: center; /* Centra el título */
+    margin-top: 10px; /* Espaciado entre icono y título */
+}
+
+.container {
+  padding: 0;
+}
+
+/* Responsividad */
+@media (max-width: 991px) {
+  .card-title {
+    font-size: 1rem; /* Ajustar el tamaño de la fuente en dispositivos pequeños */
+  }
+  
+  .mbr-cards-col {
+    flex: 0 0 48%;  /* Para pantallas medianas (tablets) */
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .mbr-cards-col {
+    flex: 0 0 100%;  /* Para pantallas más pequeñas (móviles) */
+    margin-bottom: 20px;
+  }
+}
+
+
+/* General styling for the footer section */
+.mbr-footer {
+  background-color: rgba(0, 0, 0, 0.5); /* Dark background */
+  color: #fff; /* White text for contrast */
+  padding: 40px 60px; /* Add padding for spacing */
+  position: relative;
+}
+
+.mbr-footer .mbr-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+  z-index: -1; /* Place below content */
+}
+
+/* Styling for footer content */
+.mbr-footer-content {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.mbr-footer-content i {
+  color: #ffc107; /* Highlight icons with a gold color */
+  font-size: 24px; /* Larger icons */
+  margin-right: 10px; /* Space between icon and text */
+  vertical-align: middle;
+}
+
+/* Links styling */
+.mbr-footer-content a {
+  color: #ffc107; /* Gold color for links */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold;
+}
+
+.mbr-footer-content a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Facebook embed adjustments */
+.fb-page {
+  margin-top: 20px;
+  text-align: center;
+  transform: scale(1.1); /* Slightly larger Facebook embed */
+  transform-origin: center; /* Center scaling */
+}
+
+.fb-page iframe {
+  border: 2px solid #ffc107; /* Highlighted border */
+  border-radius: 5px; /* Slightly rounded corners */
+}
+
+/* Layout styling */
+.Enlaces .row {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  justify-content: space-around; /* Distribute sections evenly */
+}
+
+.mbr-footer-content.col-md-3 {
+  flex: 1 1 25%; /* Each section takes 25% of the row on large screens */
+  min-width: 200px; /* Minimum width for smaller screens */
+  padding: 10px; /* Add spacing between sections */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mbr-footer-content {
+      text-align: center; /* Center-align text for smaller screens */
+  }
+  .Enlaces .row {
+      flex-direction: column; /* Stack sections vertically */
+  }
+  .fb-page {
+      margin: 20px auto; /* Center Facebook embed */
+  }
+}
+
+/* Estilo general para la sección */
+.mbr-section {
+    background-color: transparent; /* Fondo transparente */
+    padding: 80px 0; /* Ajusta el espacio superior e inferior */
+}
+
+/* Estilo para el contenido */
+.container {
+    z-index: 2;
+}
+
+.mbr-section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #000; /* Color del título */
+}
+
+.text-muted {
+    font-size: 1.2rem;
+    color: #666; /* Color del texto explicativo */
+}
+
+/* Estilo para el formulario */
+.form-group label {
+    font-size: 1.1rem;
+    color: #000; /* Color de las etiquetas */
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    border: 1px solid #ffc107;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    border-color: #ffcc33;
+    box-shadow: 0 0 5px rgba(255, 204, 51, 0.5);
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: #000;
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+    background-color: #ffcc33;
+    color: #000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .mbr-section-title {
+        font-size: 2rem;
+    }
+
+    .btn-warning {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+
+
+.mbr-footer {
+  background-color: rgba(0, 0, 0, 0.5); 
+  color: #fff; 
+  padding: 40px 60px; 
+  position: relative;
+}
+
+.mbr-footer .mbr-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: -1;
+}
+
+.mbr-footer-content {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.mbr-footer-content i {
+  color: #ffc107; 
+  font-size: 24px; 
+  margin-right: 10px; 
+  vertical-align: middle;
+}
+
+
+.mbr-footer-content a {
+  color: #ffc107; 
+  text-decoration: none; 
+  font-weight: bold;
+}
+
+.mbr-footer-content a:hover {
+  text-decoration: underline; 
+}
+
+.fb-page {
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+.Enlaces .row {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-around; 
+}
+
+.mbr-footer-content.col-md-3 {
+  flex: 1 1 25%; 
+  min-width: 200px; 
+  padding: 10px; 
+  box-sizing: border-box; 
+}
+
+
+@media (max-width: 768px) {
+  .mbr-footer-content {
+      text-align: center; 
+  }
+  .Enlaces .row {
+      flex-direction: column; 
+  }
+  .fb-page {
+      margin: 20px auto; 
+  }
+}
+
+
+/* Estilo general para la sección */
+.custom-section {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 50px 0;
+}
+
+/* Contenedor personalizado */
+.custom-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Títulos del formulario */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #faf9f9;
+  text-align: center;
+}
+
+.text-muted {
+  font-size: 1.3rem;
+  color: #fafafa;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Estilo de etiquetas y campos */
+.form-group label {
+  font-size: 1.5rem;
+  color: #f7f6f6;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block; /* Los títulos quedan encima de los formularios */
+}
+
+.form-control {
+  border: 1px solid #ffc107;
+  border-radius: 5px;
+  padding: 15px 20px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-control:focus {
+  border-color: #ffcc33;
+  box-shadow: 0 0 5px rgba(255, 204, 51, 0.5);
+}
+
+/* Botón de enviar */
+.btn-warning {
+  background-color: #ffc107;
+  border: none;
+  color: #000;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.btn-warning:hover {
+  background-color: #ffcc33;
+  color: #000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Nombre y Email en una línea horizontal */
+.row {
+  display: flex;
+  gap: 20px; /* Espacio entre columnas */
+  justify-content: center;
+}
+
+.col-md-6 {
+  flex: 1;
+  display: flex;
+  max-width: 600px;
+  flex-direction: column;
+}
+
+/* Mensaje en toda la línea */
+textarea {
+  width: 100%;
+  resize: none;
+  height: 200px;
+  font-size: 1.2rem;
+  padding: 15px;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .section-title {
+      font-size: 2rem;
+  }
+
+  .row {
+      flex-wrap: wrap; /* Cambia a columnas en pantallas pequeñas */
+  }
+
+  .col-md-6 {
+      width: 100%; /* Cada columna ocupa el ancho completo */
+  }
+}
+
+
+/* Estilo general para la sección de redes sociales */
+.custom-social-section {
+  background-color: transparent;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+/* Contenedor de redes sociales */
+.custom-container {
+  max-width: 1200px; /* Ancho máximo de la sección */
+  margin: 0 auto; /* Centrado */
+}
+
+/* Título */
+.section-title {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Estilo de los botones sociales */
+.social-buttons {
+  text-align: center;
+}
+
+.social-buttons .btn {
+  font-size: 30px;
+  padding: 5px 5px; /* Botones más grandes */
+  margin: 0 20px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.social-buttons .btn:hover {
+  opacity: 0.8;
+}
+
+.social-buttons .socicon {
+  font-size: 36px; /* Iconos más grandes */
+}
+
+/* Colores de los botones */
+.mbr-icon {
+  width: 50px; /* Ajustar el tamaño de la imagen */
+  height: auto; /* Mantener la proporción de la imagen */
+  padding-right: 0em; /* Quitar espaciado extra */
+}
+
+.btn-social {
+  margin: 10px; /* Espaciado entre los botones */
+  padding: 12px 24px; /* Tamaño del botón */
+  border-radius: 50%; /* Hacer los botones redondos */
+  display: inline-flex; /* Alineación de contenido dentro del botón */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .section-title {
+      font-size: 2.3rem;
+  }
+
+  .social-buttons .btn {
+      font-size: 28px; /* Reducido en pantallas pequeñas */
+      padding: 12px 20px; /* Ajuste en padding */
+  }
+}
+
+/* Estilos para el pie de página */
+.custom-footer {
+    background-color: #2c3e50; /* Fondo oscuro */
+    color: #fff; /* Texto en color blanco */
+    padding: 20px 0; /* Espaciado superior e inferior */
+    font-size: 14px; /* Tamaño de fuente */
+    text-align: center; /* Centrado de texto */
+}
+
+/* Enlace del mapa del sitio */
+.custom-footer .text-warning {
+    color: #f39c12; /* Color amarillo para el enlace */
+    text-decoration: none; /* Sin subrayado */
+}
+
+.custom-footer .text-warning:hover {
+    color: #e67e22; /* Color cuando el enlace se pasa por encima */
+    text-decoration: underline; /* Subrayado al pasar el ratón */
+}
+
+/* Icono del mapa del sitio */
+.custom-footer i {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+/* Separador horizontal */
+.custom-footer hr {
+    border: 0;
+    border-top: 1px solid #fff; /* Línea blanca */
+    margin: 20px 0;
+    width: 50%; /* Ancho de la línea */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Texto del copyright */
+.custom-footer p {
+    margin: 5px 0;
+}
+
+/* Fecha de actualización */
+#fecha_pie {
+    font-size: 12px;
+    color: #bdc3c7; /* Color gris claro */
+    margin-top: 10px;
+}
+
+/* Asegura que los elementos en el footer sean responsivos */
+@media (max-width: 768px) {
+    .custom-footer {
+        padding: 15px 0; /* Menor espaciado en pantallas pequeñas */
+    }
+
+    .custom-footer i {
+        font-size: 20px; /* Aumenta el tamaño del icono en pantallas pequeñas */
+    }
+
+    .custom-footer .row {
+        text-align: center; /* Centra el contenido en pantallas pequeñas */
+    }
+
+    #fecha_pie {
+        font-size: 14px; /* Aumenta el tamaño de la fuente en pantallas pequeñas */
+    }
+}
